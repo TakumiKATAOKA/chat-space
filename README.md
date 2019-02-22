@@ -8,7 +8,7 @@
 |mail|string|null: false,unique:true|
 
 ### Association
-- has_many :groups, throught: members
+- has_many :groups, through: members
 - has_many :messages
 - has_many :members
 
@@ -19,7 +19,7 @@
 |name|string|null:false,unique:true|
 
 ### Association
-- has_many :users, throught: members
+- has_many :users, through: members
 - has_many :members
 _ has_many :messages
 
@@ -39,7 +39,9 @@ _ has_many :messages
 |------|----|-------|
 |body|text||
 |image|text| |
-|data|timestamps|null: false|
+||timestamps|null: false|
+|group_id|integer|null: false, foreign_key:	true|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
