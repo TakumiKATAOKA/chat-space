@@ -1,0 +1,47 @@
+%header
+.contents
+ .left-content
+  .user
+   .user__box
+    .user__box__name seo
+    %ul.user__box__menu
+     %li.user__box__menu__edit
+      =link_to do
+       %i.fa.fa-edit
+     %li.user__box__menu__new
+      =link_to  do
+       %i.fa.fa-cog
+  .groups-contents
+   .groups
+    .groups__name sample
+    .groups__last-message good bye world
+   .groups
+    .groups__name sample
+    .groups__last-message hello
+   .groups
+    .groups__name sample
+    .groups__last-message まだありまs
+ .right-content
+  .group
+   .group__box
+    .group__name sample
+    .group__members Members seo neko
+   =link_to do
+    .edit-btn Edit
+  .messages
+   .message
+    .message__user seo
+    .message__create 2016/09/21 06:16:55
+    .p Hello world!
+   .message
+    .message__user neko
+    .message__create 2016/09/21 06:16:55
+    .p Good bye world!
+  .post
+   .input-box
+    %input(class="input-box__text"  type="text" placeholder="type a message")
+    %label.input-box__image{for: "message_image"}
+     %i.fas.fa-images
+      %input.input-box__image__file{type:"file" ,id:"message_image"}
+
+    %input(class="input-box__btn" type="submit" value="SEND")
