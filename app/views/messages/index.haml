@@ -3,13 +3,14 @@
  .left-content
   .user
    .user__box
-    .user__box__name seo
+    .user__box__name
+     = current_user.name
     %ul.user__box__menu
      %li.user__box__menu__edit
       =link_to do
        %i.fa.fa-edit
      %li.user__box__menu__new
-      =link_to  do
+      =link_to edit_user_path(current_user) do
        %i.fa.fa-cog
   .groups-contents
    .groups
