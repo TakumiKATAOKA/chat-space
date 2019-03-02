@@ -10,10 +10,11 @@ header{
     width: 300px;
     font-weight: bold;
     .user{
-      height: 100px;
       background: #253141;
       &__box{
+         height: 30px;
       padding: 35px 20px;
+      color: $white;
         &__name{
           float:left;
           font-size: 16px;
