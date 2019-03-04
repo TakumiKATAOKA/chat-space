@@ -1,46 +1,25 @@
-%header
 .contents
- .left-content
-  .user
-   .user__box
-    .user__box__name
-     = current_user.name
-    %ul.user__box__menu
-     %li.user__box__menu__edit
-      =link_to new_group_path do
-       %i.fa.fa-edit
-     %li.user__box__menu__new
-      =link_to edit_user_path(current_user) do
-       %i.fa.fa-cog
-  .groups-contents
-   - current_user.groups.each do |group|
-    .groups
-     = link_to group_messages_path(group) do
-      .groups__name
-       =group.name
-      .groups__last-message
-       メッセージはまだありません。
- .right-content
-  .group
-   .group__box
-    .group__box__name sample
-    .group__box__members Members seo neko
-   =link_to do
-    .edit-btn Edit
-  .messages
-   .message
-    .message__user seo
-    .message__create 2016/09/21 06:16:55
-    %p Hello world!
-   .message
-    .message__user neko
-    .message__create 2016/09/21 06:16:55
-    .p Good bye world!
-  .post
-   .input-box
-    %input(class="input-box__text"  type="text" placeholder="type a message")
-    %label.input-box__image{for: "message_image"}
-     %i.fas.fa-images
-      %input.input-box__image__file{type:"file" ,id:"message_image"}
-
-    %input(class="input-box__btn" type="submit" value="SEND")
+  .left-content
+    = render 'shared/side_bar'
+  .right-content
+    .group
+      .group__box
+        .group__box__name
+          =@group.name
+        .group__box__members
+          Members:
+          - @group.users.each do |user|
+            =user.name
+      =link_to edit_group_path(@group) do
+        .edit-btn Edit
+    .messages
+      = render @messages
+    .post
+      .input-box
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          .form__mask
+            = f.label :image, class: 'input-box__image' do
+              = fa_icon 'picture-o', class: 'fas fa-images'
+              = f.file_field :image, class: 'input-box__image__file'
+            = f.submit 'Send', class: 'input-box__btn'

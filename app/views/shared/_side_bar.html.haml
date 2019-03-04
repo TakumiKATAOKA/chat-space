@@ -13,7 +13,8 @@
   .groups-contents
     - current_user.groups.each do |group|
       .groups
-        = link_to  do
+        = link_to group_messages_path(group) do
           .groups__name
             = group.name
-          .groups__last-message メッセージ
+          .groups__last-message
+            = group.show_last_message
