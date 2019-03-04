@@ -1,0 +1,30 @@
+%header
+.contents
+ .left-content
+  .user
+   .user__box
+    .user__box__name
+     = current_user.name
+    %ul.user__box__menu
+     %li.user__box__menu__edit
+      =link_to new_group_path do
+       %i.fa.fa-edit
+     %li.user__box__menu__new
+      =link_to edit_user_path(current_user) do
+       %i.fa.fa-cog
+  .groups-contents
+   - current_user.groups.each do |group|
+    .groups
+     = link_to group_messages_path(group) do
+      .groups__name
+       =group.name
+      .groups__last-message
+       メッセージはまだありません。
+   .input-box
+    %input(class="input-box__text"  type="text" placeholder="type a message")
+    %label.input-box__image{for: "message_image"}
+     %i.fas.fa-images
+      %input.input-box__image__file{type:"file" ,id:"message_image"}
+
+    %input(class="input-box__btn" type="submit" value="SEND")
+
