@@ -22,7 +22,7 @@
             = f.label :password
             %i (英数字8文字以上)
           .field-input
-            = f.password_field :password, autocomplete: "off"
+            = f.password_field :password, autocomplete: "off",minlength: "8"
         .field
           .field-label
             = f.label :password_confirmation
