@@ -1,9 +1,6 @@
 $(function(){
   function buildSendMessageHTML(message){
-     var add_image ="";
-    if(message.image){
-      add_image = `<p class="lower-meesage__image"><img src="${message.image}"></p>`;
-    }
+   var add_image = (message.image) ? `<p class="lower-meesage__image"><img src="${message.image}"></p>` : "";
     var html = `<div class="message">
                   <div class="message__user">${message.user_name}</div>
                   <div class="message__create">${message.created_at}</div>
@@ -31,9 +28,10 @@ $(function(){
       var html = buildSendMessageHTML(message)
 
       $('.messages').append(html)
-      $('.input-box__text').val('')
+      $('#new_message')[0].reset()
       $('.messages').animate({
         'scrollTop': $('.messages')[0].scrollHeight
+
       })
     })
     .fail(function(){
