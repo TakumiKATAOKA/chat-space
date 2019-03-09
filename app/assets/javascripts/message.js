@@ -1,5 +1,5 @@
 $(function(){
-  function buildHTML(message){
+  function buildSendMessageHTML(message){
      var add_image ="";
     if(message.image){
       add_image = `<p class="lower-meesage__image"><img src="${message.image}"></p>`;
@@ -27,8 +27,8 @@ $(function(){
       processData: false,
       contentType: false
     })
-    .done(function(data){
-      var html = buildHTML(data)
+    .done(function(message){
+      var html = buildSendMessageHTML(message)
 
       $('.messages').append(html)
       $('.input-box__text').val('')
