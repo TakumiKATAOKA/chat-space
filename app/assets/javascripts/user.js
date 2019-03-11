@@ -27,8 +27,8 @@ $(function(){
   });
 
   $(document).on('click', '.js-remove-btn', function(){
-        $(this).parent().remove();
-      });
+    $(this).parent().remove();
+  });
 
 
   $('#user-search-field').on("keyup",function(){
