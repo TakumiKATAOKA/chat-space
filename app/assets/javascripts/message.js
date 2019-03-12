@@ -39,27 +39,27 @@ $(function(){
     });
   });
   setInterval(countup, 5000);
-}
- if (window.location.href.match(/\/groups\/\d+\/messages/)) {
-  var countup = function(){
-    var lastMessageId = $('.message').last().data('message-id');
-    $.ajax({
+  if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+    var countup = function(){
+      var lastMessageId = $('.message').last().data('message-id');
+      $.ajax({
       type: "GET",
       url: location.href,
       dataType: 'json',
-      data: {lastMessageId: lastMessageId},
-    })
-    .done(function(new_messages){
-      new_messages.forEach(function(message){
-        var html= buildSendMessageHTML(message);
-        $(".messages").append(html);
-        $('.messages').animate({
-          scrollTop: $('.messages')[0].scrollHeight
+      data: {last_message_id: lastMessageId},
+      })
+      .done(function(new_messages){
+        new_messages.forEach(function(message){
+          var html= buildSendMessageHTML(message);
+          $(".messages").append(html);
+          $('.messages').animate({
+            scrollTop: $('.messages')[0].scrollHeight
+          });
         });
-      });
-    })
-    .fail(function(){
-      alert("自動メッセージ取得に失敗しました")
-    })
+      })
+      .fail(function(){
+        alert("自動メッセージ取得に失敗しました")
+      })
+    }
   }
 })
