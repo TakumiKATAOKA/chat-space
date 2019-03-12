@@ -1,7 +1,7 @@
 $(function(){
   function buildSendMessageHTML(message){
    var add_image = (message.image) ? `<p class="lower-meesage__image"><img src="${message.image}"></p>` : "";
-    var html = `<div class="message">
+    var html = `<div class="message"data-message-id="${message.id}">
                   <div class="message__user">${message.user_name}</div>
                   <div class="message__create">${message.created_at}</div>
                   <div class="lower-message">
@@ -36,6 +36,30 @@ $(function(){
     })
     .fail(function(){
       alert('error');
-    })
-  })
-});
+    });
+  });
+  setInterval(countup, 5000);
+  if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+    var countup = function(){
+      var last_message_id = $('.message').last().data('message-id');
+      $.ajax({
+      type: "GET",
+      url: location.href,
+      dataType: 'json',
+      data: {last_message_id: last_message_id},
+      })
+      .done(function(new_messages){
+        new_messages.forEach(function(message){
+          var html= buildSendMessageHTML(message);
+          $(".messages").append(html);
+          $('.messages').animate({
+            scrollTop: $('.messages')[0].scrollHeight
+          });
+        });
+      })
+      .fail(function(){
+        alert("自動メッセージ取得に失敗しました")
+      })
+    }
+  }
+})
