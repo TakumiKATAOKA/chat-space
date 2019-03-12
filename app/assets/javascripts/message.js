@@ -41,12 +41,12 @@ $(function(){
   setInterval(countup, 5000);
   if (window.location.href.match(/\/groups\/\d+\/messages/)) {
     var countup = function(){
-      var lastMessageId = $('.message').last().data('message-id');
+      var last_message_id = $('.message').last().data('message-id');
       $.ajax({
       type: "GET",
       url: location.href,
       dataType: 'json',
-      data: {last_message_id: lastMessageId},
+      data: {last_message_id: last_message_id},
       })
       .done(function(new_messages){
         new_messages.forEach(function(message){
