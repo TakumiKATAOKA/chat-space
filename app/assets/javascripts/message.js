@@ -38,7 +38,7 @@ $(function(){
       alert('error');
     });
   });
-  setInterval(countup, 5000);
+
   if (window.location.href.match(/\/groups\/\d+\/messages/)) {
     var countup = function(){
       var last_message_id = $('.message').last().data('message-id');
@@ -61,5 +61,6 @@ $(function(){
         alert("自動メッセージ取得に失敗しました")
       })
     }
+    setInterval(countup, 5000);
   }
 })
